@@ -9,12 +9,11 @@ import (
 )
 
 type TruckRepository interface {
-	FindAll() ([]domains.Truck, error)
 	FindAllAvailable() ([]domains.Truck, error)
+	FindAll(search string, filter string, sortType string, sortBy string) ([]domains.Truck, error)
 	FindById(ID int) (*domains.Truck, error)
 	Create(truck domains.Truck) (domains.Truck, error)
 	Update(truck domains.Truck) (domains.Truck, error)
-	Delete(truck domains.Truck) (domains.Truck, error)
 }
 
 type truckRepository struct {
@@ -25,10 +24,22 @@ func NewTruckRepository(db *gorm.DB) *truckRepository {
 	return &truckRepository{db}
 }
 
-func (r *truckRepository) FindAll() ([]domains.Truck, error) {
+func (r *truckRepository) FindAll(search string, filter string, sortType string, sortBy string) ([]domains.Truck, error) {
 	var trucks []domains.Truck
 
-	err := r.db.Find(&trucks).Error
+	query := r.db.Where("license_number LIKE ?", "%"+search+"%")
+
+	if len(filter) > 0 {
+		query = query.Where("truck_type = ?", filter)
+	} else if len(sortType) > 0 && len(sortBy) > 0 {
+
+		sortQuery := fmt.Sprintf("%v ", sortBy)
+		sortQuery += sortType
+
+		query = query.Order(sortQuery)
+	}
+
+	err := query.Find(&trucks).Error
 
 	return trucks, err
 }
@@ -65,12 +76,6 @@ func (r *truckRepository) Create(truck domains.Truck) (domains.Truck, error) {
 
 func (r *truckRepository) Update(truck domains.Truck) (domains.Truck, error) {
 	err := r.db.Save(&truck).Error
-
-	return truck, err
-}
-
-func (r *truckRepository) Delete(truck domains.Truck) (domains.Truck, error) {
-	err := r.db.Delete(&truck).Error
 
 	return truck, err
 }

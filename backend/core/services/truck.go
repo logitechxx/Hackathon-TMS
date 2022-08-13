@@ -7,12 +7,11 @@ import (
 )
 
 type TruckService interface {
-	FindAll() ([]domains.Truck, error)
 	FindAllAvailable() ([]domains.Truck, error)
+	FindAll(search string, filter string, sortType string, sortBy string) ([]domains.Truck, error)
 	Create(truckRequest dto.TruckDtoRequest) (domains.Truck, error)
 	FindById(ID int) (*domains.Truck, error)
 	Update(ID int, truckRequest dto.TruckDtoRequest) (*domains.Truck, error)
-	// Delete(ID int) (*domains.Truck, error)
 }
 
 type truckService struct {
@@ -36,8 +35,8 @@ func (s *truckService) Create(truckRequest dto.TruckDtoRequest) (domains.Truck, 
 	return newTruck, err
 }
 
-func (s *truckService) FindAll() ([]domains.Truck, error) {
-	trucks, err := s.truckRepo.FindAll()
+func (s *truckService) FindAll(search string, filter string, sortType string, sortBy string) ([]domains.Truck, error) {
+	trucks, err := s.truckRepo.FindAll(search, filter, sortBy, sortType)
 
 	return trucks, err
 }
