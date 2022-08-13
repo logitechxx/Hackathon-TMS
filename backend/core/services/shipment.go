@@ -5,10 +5,11 @@ import (
 	"kargo/TMS/core/domains"
 	"kargo/TMS/handler/dto"
 	"kargo/TMS/repositories"
+	"strconv"
 )
 
 type ShipmentService interface {
-	FindAll() ([]domains.Shipment, error)
+	FindAll(search string, sortBy string, sortType string) ([]domains.Shipment, error)
 	Create(shipmentRequest dto.ShipmentInput) (domains.Shipment, error)
 	Allocate(ID int, shipmentAllocateRequest dto.ShipmentAllocateInput) (*domains.Shipment, error)
 	UpdateStatus(ID int, status int) (*domains.Shipment, error)
@@ -24,8 +25,8 @@ func NewShipmentService(shipmentRepo repositories.ShipmentRepository, driverRepo
 	return &shipmentService{shipmentRepo, driverRepo, truckRepo}
 }
 
-func (s *shipmentService) FindAll() ([]domains.Shipment, error) {
-	shipments, err := s.shipmentRepo.FindAll()
+func (s *shipmentService) FindAll(search string, sortBy string, sortType string) ([]domains.Shipment, error) {
+	shipments, err := s.shipmentRepo.FindAll(search, sortBy, sortType)
 
 	return shipments, err
 }
@@ -38,6 +39,13 @@ func (s *shipmentService) Create(shipmentRequest dto.ShipmentInput) (domains.Shi
 	}
 
 	newShipment, err := s.shipmentRepo.Create(shipment)
+
+	if err != nil {
+		return newShipment, err
+	}
+
+	newShipment.ShipmentNumber = "DO-" + strconv.Itoa(newShipment.Id)
+	newShipment, err = s.shipmentRepo.Update(newShipment)
 
 	return newShipment, err
 }

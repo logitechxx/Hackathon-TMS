@@ -19,7 +19,11 @@ func NewShipmentHandler(shipmentService services.ShipmentService) *shipmentHandl
 }
 
 func (h *shipmentHandler) GetAll(c *gin.Context) {
-	shipments, err := h.shipmentService.FindAll()
+	search := c.Query("search")
+	sortBy := c.Query("sort_by")
+	sortType := c.Query("sort_type")
+
+	shipments, err := h.shipmentService.FindAll(search, sortBy, sortType)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -31,7 +35,7 @@ func (h *shipmentHandler) GetAll(c *gin.Context) {
 	for _, shipment := range shipments {
 		shipmentResponse := dto.ShipmentResponse{
 			Id: shipment.Id,
-			ShipmentNumber: "DO-" + strconv.Itoa(shipment.Id),
+			ShipmentNumber: shipment.ShipmentNumber,
 			LicenseNumber: shipment.Truck.LicenseNumber,
 			DriverName: shipment.Driver.Name,
 			Origin: shipment.Origin,
@@ -112,7 +116,7 @@ func (h *shipmentHandler) UpdateStatus(c *gin.Context) {
 	idString := c.Param("id")
 	id, _ := strconv.Atoi(idString)
 
-	shipment, err := h.shipmentService.UpdateStatus(id, shipmentUpdateStatusInput.StatusId)
+	shipment, err := h.shipmentService.UpdateStatus(id, shipmentUpdateStatusInput.StatusId + 2)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

@@ -7,6 +7,7 @@ import (
 )
 
 type TruckService interface {
+	FindAllAvailable() ([]domains.Truck, error)
 	FindAll(search string, filter string, sortType string, sortBy string) ([]domains.Truck, error)
 	Create(truckRequest dto.TruckDtoRequest) (domains.Truck, error)
 	FindById(ID int) (*domains.Truck, error)
@@ -37,6 +38,12 @@ func (s *truckService) Create(truckRequest dto.TruckDtoRequest) (domains.Truck, 
 
 func (s *truckService) FindAll(search string, filter string, sortType string, sortBy string) ([]domains.Truck, error) {
 	trucks, err := s.truckRepo.FindAll(search, filter, sortBy, sortType)
+
+	return trucks, err
+}
+
+func (s *truckService) FindAllAvailable() ([]domains.Truck, error) {
+	trucks, err := s.truckRepo.FindAllAvailable()
 
 	return trucks, err
 }

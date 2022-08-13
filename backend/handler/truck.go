@@ -116,6 +116,18 @@ func (h *truckHandler) GetAll(c *gin.Context) {
 	})
 }
 
+func (h *truckHandler) GetAllAvailable(c *gin.Context) {
+	trucks, err := h.truckSrv.FindAllAvailable()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": dto.ToTrucksDto(trucks...),
+	})
+}
+
 func (h *truckHandler) GetById(c *gin.Context) {
 	idString := c.Param("id")
 	id, _ := strconv.Atoi(idString)

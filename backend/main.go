@@ -40,6 +40,7 @@ func main() {
 	trucksRouter.GET("/:id", truckHandler.GetById)
 	trucksRouter.PUT("/:id", truckHandler.Update)
 	trucksRouter.POST("/files/:id", truckHandler.UploadImage)
+	trucksRouter.GET("/Available", truckHandler.GetAllAvailable)
 
 	driverRepository := repositories.NewDriverRepository(DB)
 	driverService := services.NewDriverService(driverRepository)
@@ -51,6 +52,7 @@ func main() {
 	driverRouter.GET("/:id", driverHandler.GetById)
 	driverRouter.PUT("/:id", driverHandler.Update)
 	driverRouter.GET("/:id/deactivate", driverHandler.Deactivate)
+	driverRouter.GET("/Available", driverHandler.GetAllAvailable)
 
 	// Shipment
 	shipmentRepository := repositories.NewShipmentRepository(DB)

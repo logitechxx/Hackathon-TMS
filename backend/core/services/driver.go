@@ -8,6 +8,7 @@ import (
 
 type DriverService interface {
 	FindAll() ([]domains.Driver, error)
+	FindAllAvailable() ([]domains.Driver, error)
 	FindById(id int) (*domains.Driver, error)
 	Create(driverRequest dto.DriverRequest) (*domains.Driver, error)
 	Update(id int, driverRequest dto.DriverRequest) (*domains.Driver, error)
@@ -27,6 +28,12 @@ const StatusInactive = false
 
 func (ds *driverService) FindAll() ([]domains.Driver, error) {
 	drivers, err := ds.driverRepo.FindAll()
+
+	return drivers, err
+}
+
+func (ds *driverService) FindAllAvailable() ([]domains.Driver, error) {
+	drivers, err := ds.driverRepo.FindAllAvailable()
 
 	return drivers, err
 }

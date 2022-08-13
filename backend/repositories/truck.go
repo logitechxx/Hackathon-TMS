@@ -9,6 +9,7 @@ import (
 )
 
 type TruckRepository interface {
+	FindAllAvailable() ([]domains.Truck, error)
 	FindAll(search string, filter string, sortType string, sortBy string) ([]domains.Truck, error)
 	FindById(ID int) (*domains.Truck, error)
 	Create(truck domains.Truck) (domains.Truck, error)
@@ -40,6 +41,14 @@ func (r *truckRepository) FindAll(search string, filter string, sortType string,
 	}
 
 	err := query.Find(&trucks).Error
+
+	return trucks, err
+}
+
+func (r *truckRepository) FindAllAvailable() ([]domains.Truck, error) {
+	var trucks []domains.Truck
+
+	err := r.db.Where("status = true").Find(&trucks).Error
 
 	return trucks, err
 }
