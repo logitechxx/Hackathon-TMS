@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 import { TableTruck } from '../../components'
 import CreateTruck from '../../components/organisms/Truck/CreateTruck'
@@ -8,10 +8,13 @@ function TruckPage() {
     <Box
     p="15"
     m="10"
-    backgroundColor='facebook.200'>
+    backgroundColor='facebook.200'
+    height="80vh">
       <h1>hhshdsahdj</h1>
+      <Flex>
+      <CreateTruck />
+      </Flex>
         <TableTruck />
-        <CreateTruck />
     </Box>
   )
 }

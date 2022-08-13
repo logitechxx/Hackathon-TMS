@@ -2,7 +2,7 @@ import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButt
 import React from 'react'
 import SelectDropdown from '../../atoms/SelectDropdown'
 
-function CreateTruck() {
+function EditTruck() {
         const { isOpen, onOpen, onClose } = useDisclosure()
       
         const initialRef = React.useRef(null)
@@ -24,7 +24,7 @@ const truckType = [
 
         return (
           <>
-            <Button onClick={onOpen}>Create</Button>
+            <Button onClick={onOpen}>Change Details</Button>
             <Modal
               initialFocusRef={initialRef}
               finalFocusRef={finalRef}
@@ -91,4 +91,4 @@ const truckType = [
         )
 }
 
-export default CreateTruck
+export default EditTruck

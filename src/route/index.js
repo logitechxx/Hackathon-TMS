@@ -16,12 +16,8 @@ export const routes = [
 export const transporters=[
   {
     path:'/transporter',
-    element : <Transporters />
-  },
-  {
-    path:'/transporter/trucks',
     element : <TruckPage />
-  }
+  },
 ]
 
 export const shipper=[
