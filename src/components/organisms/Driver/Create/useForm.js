@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useQueryClient, useMutation } from 'react-query';
+import { createDriver } from '../../../../services/account';
 
 const useForm = () => {
   const [values, setValues] = useState({
     name: '',
-    phone: '',
+    phone_numbers: '',
   });
   const [idCard, setIdCard] = useState(null);
   const [driverLicense, setDriverLicense] = useState(null);
@@ -37,8 +38,16 @@ const useForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('idCard', idCard);
+    const data = {
+      name: values.name,
+      phone_numbers: values.phone_numbers,
+    };
+
+    try {
+      createDriver(data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return {

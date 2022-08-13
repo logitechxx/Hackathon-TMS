@@ -49,12 +49,22 @@ function CreateDriver() {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Driver Name</FormLabel>
-              <Input ref={initialRef} placeholder="Driver Name" name="name" />
+              <Input
+                value={values.name}
+                onChange={handleChange}
+                placeholder="Driver Name"
+                name="name"
+              />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Phone Number</FormLabel>
-              <Input ref={initialRef} placeholder="+62xxxxxxxx" name="phone" />
+              <Input
+                value={values.phone_numbers}
+                onChange={handleChange}
+                placeholder="+62xxxxxxxx"
+                name="phone_numbers"
+              />
             </FormControl>
 
             <FormControl mt={4}>
@@ -73,7 +83,7 @@ function CreateDriver() {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="facebook" mr={3}>
+            <Button colorScheme="facebook" mr={3} onClick={onSubmit}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>
