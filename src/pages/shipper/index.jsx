@@ -7,9 +7,8 @@ function Shipper() {
         <Box
             p="15"
             m="10"
-            backgroundColor='facebook.200'>
+            backgroundColor='linkedin.200'>
             <TableShipper />
-            helloooo
         </Box>
     );
 }

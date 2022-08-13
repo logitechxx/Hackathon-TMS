@@ -1,7 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react'
 import { CustomTable, ButtonTable } from '../../molecules';
-// import './style.css'
+import './styles.css'
 
 function TableShipper() {
     const columns = [

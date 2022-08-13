@@ -2,10 +2,11 @@ import { Box } from '@chakra-ui/react';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar/Navbar';
+import './styles.css'
 
 function Layout() {
   return (
-    <Box backgroundColor={"#282c34"}>
+    <Box className="layout-color">
       <Navbar/>
       <Outlet />
     </Box>
