@@ -2,29 +2,25 @@ import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButt
 import React from 'react'
 import SelectDropdown from '../../atoms/SelectDropdown'
 
+
 function ShipmentStatus() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
 
-
-    const truckType = [
-        { value: 'tronton', label: 'Tronton' },
-        { value: 'container', label: 'Container' },
-        { value: 'cde', label: 'CDE' },
-        { value: 'cdd', label: 'CDD' },
-        { value: 'wingbox', label: 'WingBox' },
-    ]
-
-    const licenseType = [
-        { value: 'Black', label: 'Black' },
-        { value: 'yellow', label: 'Yellow' },
+    const shipmentStatus = [
+        { value: 'allocated', label: 'Allocated' },
+        { value: 'ongoing-origin', label: 'Ongoing to Origin' },
+        { value: 'origin', label: 'At Origin' },
+        { value: 'ongoing-destination', label: 'Ongoing to Destination' },
+        { value: 'destination', label: 'At Destination' },
+        { value: 'completed', label: 'Completed' },
     ]
 
     return (
         <>
-            <Button onClick={onOpen}>Change Details</Button>
+            <Button onClick={onOpen}>Shipment Status</Button>
             <Modal
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}
@@ -33,54 +29,23 @@ function ShipmentStatus() {
             >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Add New Unit</ModalHeader>
+                    <ModalHeader>Shipment Status</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
-                        <FormControl>
-                            <FormLabel>License Number</FormLabel>
-                            <Input ref={initialRef} placeholder='License' />
-                        </FormControl>
-
                         <FormControl mt={4}>
-                            <FormLabel>License Type</FormLabel>
+                            <FormLabel>Status</FormLabel>
                             <SelectDropdown
                                 multi
-                                name="licenseType"
+                                name="status"
                                 searchable
-                                options={licenseType}
+                                options={shipmentStatus}
                             />
-                        </FormControl>
-
-                        <FormControl mt={4}>
-                            <FormLabel>Truck Type</FormLabel>
-                            <SelectDropdown
-                                multi
-                                name="truckType"
-                                searchable
-                                options={truckType}
-                            />
-                        </FormControl>
-
-                        <FormControl mt={4}>
-                            <FormLabel> Production Year</FormLabel>
-                            <Input placeholder='Last name' />
-                        </FormControl>
-
-
-                        <FormControl mt={4}>
-                            <FormLabel> STNK</FormLabel>
-                            <Input type="file" placeholder='Last name' />
-                        </FormControl>
-
-                        <FormControl mt={4}>
-                            <FormLabel> KIR</FormLabel>
-                            <Input type="file" placeholder='Last name' />
                         </FormControl>
 
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='facebook' mr={3}>
+                        <Button colorScheme='linkedin' mr={3}>
                             Save
                         </Button>
                         <Button onClick={onClose}>Cancel</Button>
