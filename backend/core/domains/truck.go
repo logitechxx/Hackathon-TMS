@@ -7,4 +7,6 @@ type Truck struct {
 	PlateType      string
 	ProductionYear string
 	Status         bool
+	Stnk           string
+	Kir            string
 }

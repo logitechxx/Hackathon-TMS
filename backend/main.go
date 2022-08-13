@@ -39,6 +39,7 @@ func main() {
 	trucksRouter.GET("/", truckHandler.GetAll)
 	trucksRouter.GET("/:id", truckHandler.GetById)
 	trucksRouter.PUT("/:id", truckHandler.Update)
+	trucksRouter.POST("/files/:id", truckHandler.UploadImage)
 
 	driverRepository := repositories.NewDriverRepository(DB)
 	driverService := services.NewDriverService(driverRepository)

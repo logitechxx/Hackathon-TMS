@@ -11,6 +11,7 @@ type TruckService interface {
 	Create(truckRequest dto.TruckDtoRequest) (domains.Truck, error)
 	FindById(ID int) (*domains.Truck, error)
 	Update(ID int, truckRequest dto.TruckDtoRequest) (*domains.Truck, error)
+	UpdateImage(ID int, stnk string, kir string) (*domains.Truck, error)
 }
 
 type truckService struct {
@@ -57,6 +58,21 @@ func (s *truckService) Update(ID int, truckRequest dto.TruckDtoRequest) (*domain
 	truck.TruckType = truckRequest.TruckType
 	truck.PlateType = truckRequest.PlateType
 	truck.ProductionYear = truckRequest.ProductionYear
+
+	newTruck, err := s.truckRepo.Update(*truck)
+
+	return &newTruck, err
+}
+
+func (s *truckService) UpdateImage(ID int, stnk string, kir string) (*domains.Truck, error) {
+	truck, err := s.truckRepo.FindById(ID)
+
+	if err != nil {
+		return truck, err
+	}
+
+	truck.Stnk = stnk
+	truck.Kir = kir
 
 	newTruck, err := s.truckRepo.Update(*truck)
 
