@@ -5,7 +5,7 @@ import Navbar from './Navbar/Navbar';
 
 function Layout() {
   return (
-    <Box>
+    <Box backgroundColor={"#282c34"}>
       <Navbar/>
       <Outlet />
     </Box>

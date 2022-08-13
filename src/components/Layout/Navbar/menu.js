@@ -1,14 +1,14 @@
 export const transportersMenu = [
     {
-        name:"Shipements",
-        path:"/transporters/shipments"
+        name:"Shipments",
+        path:"/transporter/shipments"
     },
     {
         name:"Trucks",
-        path:"/transporters/trucks"
+        path:"/transporter/trucks"
     },
     {
         name:"Drivers",
-        path:"/transporters/drivers"
+        path:"/transporter/drivers"
     },
 ]

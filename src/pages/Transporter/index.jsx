@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Transporters() {
+function Transporter() {
   return (
     <div>Transporters</div>
   )
 }
 
-export default Transporters
+export default Transporter

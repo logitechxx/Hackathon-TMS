@@ -12,7 +12,7 @@ function NavbarSelections() {
         >
             {
                 transportersMenu.map(item=>(
-                    <Text key={item.name} fontSize="18" fontWeight="semibold" color="facebook.300">
+                    <Text key={item.name} fontSize="18" fontWeight="semibold" color="facebook.50">
                         <Link to={item.path}>{item.name}</Link>
                     </Text>
                 ))

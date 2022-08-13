@@ -17,7 +17,7 @@ function Login() {
 
 
     return (
-        <Box className="login">
+        <Box className="login" backgroundColor={"#282c34"}>
             <Box className="login-header">
                 <Box className="login-header-wrapper">
                     <Box className="login-title">Kargo TMS</Box>

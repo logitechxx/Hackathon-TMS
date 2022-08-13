@@ -1,0 +1,21 @@
+.custom_table{
+
+    background: #FFFFFF;
+    margin-top: 12px;
+    border: 1px solid #D4DAE2;
+    box-sizing: border-box;
+    border-radius: 16px;
+    z-index: 1;
+    position: relative;
+
+}
+
+.eUeqdG {
+overflow:unset !important;
+white-space: normal !important; 
+}
+
+.rdt_TableCol{
+width:130px;
+position: relative;
+}
