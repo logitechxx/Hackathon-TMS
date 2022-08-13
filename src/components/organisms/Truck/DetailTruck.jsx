@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 
 function DetailTruck({label}) {
@@ -7,19 +7,6 @@ function DetailTruck({label}) {
         const initialRef = React.useRef(null)
         const finalRef = React.useRef(null)
 
-
-const truckType = [
-    { value: 'tronton', label: 'Tronton' },
-    { value: 'container', label: 'Container' },
-    { value: 'cde', label: 'CDE' },
-    { value: 'cdd', label: 'CDD' },
-    { value: 'wingbox', label: 'WingBox' },
-  ]
-
-  const licenseType = [
-    { value: 'Black', label: 'Black' },
-    { value: 'yellow', label: 'Yellow' },
-  ]
 
         return (
           <>
@@ -35,7 +22,26 @@ const truckType = [
                 <ModalHeader>Detail Unit</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
-                 
+                 <Flex mb="4" justifyContent={"space-between"}>
+                  <Text fontSize={"17"} fontWeight="bold">License Number</Text>
+                  <Text> B 2448 IU</Text>
+                 </Flex>
+                 <Flex mb="4" justifyContent={"space-between"}>
+                  <Text fontSize={"17"} fontWeight="bold">Truck Type</Text>
+                  <Text> B 2448 IU</Text>
+                 </Flex>
+                 <Flex mb="4" justifyContent={"space-between"}>
+                  <Text fontSize={"17"} fontWeight="bold">Plate Type</Text>
+                  <Text> B 2448 IU</Text>
+                 </Flex>
+                 <Flex mb="4" justifyContent={"space-between"}>
+                  <Text fontSize={"17"} fontWeight="bold">Production Year</Text>
+                  <Text> B 2448 IU</Text>
+                 </Flex>
+                 <Flex mb="4" justifyContent={"space-between"}>
+                  <Text fontSize={"17"} fontWeight="bold">Status</Text>
+                  <Text> B 2448 IU</Text>
+                 </Flex>
                 </ModalBody>
               </ModalContent>
             </Modal>
