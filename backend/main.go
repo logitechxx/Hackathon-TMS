@@ -40,9 +40,20 @@ func main() {
 	trucksRouter.GET("/:id", truckHandler.GetById)
 	trucksRouter.PUT("/:id", truckHandler.Update)
 
+	driverRepository := repositories.NewDriverRepository(DB)
+	driverService := services.NewDriverService(driverRepository)
+	driverHandler := handler.NewDriverHandler(driverService)
+
+	driverRouter := router.Group("drivers")
+	driverRouter.GET("/", driverHandler.GetAll)
+	driverRouter.POST("/", driverHandler.Create)
+	driverRouter.GET("/:id", driverHandler.GetById)
+	driverRouter.PUT("/:id", driverHandler.Update)
+	driverRouter.GET("/:id/deactivate", driverHandler.Deactivate)
+
 	// Shipment
 	shipmentRepository := repositories.NewShipmentRepository(DB)
-	shipmentService := services.NewShipmentService(shipmentRepository)
+	shipmentService := services.NewShipmentService(shipmentRepository, driverRepository, truckRepository)
 	shipmentHandler := handler.NewShipmentHandler(shipmentService)
 
 	shipmentRouter := router.Group("shipments")

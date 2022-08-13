@@ -7,5 +7,5 @@ type Driver struct {
 	Name        string
 	PhoneNumber string
 	CreatedAt   time.Time
-	Status      string
+	Status      bool
 }
