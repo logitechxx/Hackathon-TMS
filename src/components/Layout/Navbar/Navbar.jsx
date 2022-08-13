@@ -6,10 +6,11 @@ function Navbar() {
   return (
     <Flex
       p="5"
+      mx="6"
       justify="space-between"
       align="center"
       >
-        <Heading as="h3" size="lg" color="facebook.100">LMS</Heading>
+        <Heading as="h4" size="lg" color="facebook.100">LMS</Heading>
         <Flex 
           w="40%"
           justify="space-between"
