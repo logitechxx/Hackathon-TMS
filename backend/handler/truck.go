@@ -4,6 +4,7 @@ import (
 	"kargo/TMS/core/services"
 	"kargo/TMS/handler/dto"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,7 +18,7 @@ func NewTruckHandler(truckSrv services.TruckService) *truckHandler {
 }
 
 func (h *truckHandler) Create(c *gin.Context) {
-	var truckInput dto.TruckInput
+	var truckInput dto.TruckDtoRequest
 
 	err := c.ShouldBindJSON(&truckInput)
 
@@ -38,16 +39,53 @@ func (h *truckHandler) Create(c *gin.Context) {
 	})
 }
 
-// func (h *truckHandler) GetAll(c *gin.Context) {
-// 	trucks, err := h.truckSrv.FindAll()
-// 	if err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
+func (h *truckHandler) GetAll(c *gin.Context) {
+	trucks, err := h.truckSrv.FindAll()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
-// 	// Convert to response
+	c.JSON(http.StatusOK, gin.H{
+		"data": dto.ToTrucksDto(trucks...),
+	})
+}
 
-// 	c.JSON(http.StatusOK, gin.H{
-// 		"data": trucks,
-// 	})
-// }
+func (h *truckHandler) GetById(c *gin.Context) {
+	idString := c.Param("id")
+	id, _ := strconv.Atoi(idString)
+
+	truck, err := h.truckSrv.FindById(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": dto.ToTruckDtoRequest(*truck),
+	})
+}
+
+func (h *truckHandler) Update(c *gin.Context) {
+	var truckInput dto.TruckDtoRequest
+
+	err := c.ShouldBindJSON(&truckInput)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	idString := c.Param("id")
+	id, _ := strconv.Atoi(idString)
+
+	truck, err := h.truckSrv.Update(id, truckInput)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": dto.ToTruckDtoRequest(*truck),
+	})
+}

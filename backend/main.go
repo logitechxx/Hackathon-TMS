@@ -35,6 +35,9 @@ func main() {
 	trucksRouter := router.Group("trucks")
 
 	trucksRouter.POST("/", truckHandler.Create)
+	trucksRouter.GET("/", truckHandler.GetAll)
+	trucksRouter.GET("/:id", truckHandler.GetById)
+	trucksRouter.PUT("/:id", truckHandler.Update)
 
 	shipmentRepository := repositories.NewShipmentRepository(DB)
 	shipmentService := services.NewShipmentService(shipmentRepository)
