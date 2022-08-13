@@ -7,7 +7,7 @@ const Shipper = React.lazy(() => import('../pages/shipper'));
 export const routes = [
   {
     path: '/',
-    element: <Shipper />
+    element: <Login />
   }
 ];
 
