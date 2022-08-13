@@ -1,6 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react'
-import { CustomTable } from '../../molecules';
+import { CustomTable, ButtonTable } from '../../molecules';
 import './style.css'
 
 function TableTruck() {
@@ -41,6 +41,7 @@ function TableTruck() {
       selector: (row) => row.action,
       sortable: true,
       maxWidth: '100px',
+      button: true
     },
   ];
 
@@ -51,7 +52,7 @@ function TableTruck() {
       plate: 'Yellow',
       year: '2001',
       status: 'Active',
-      action: '',
+      action: <ButtonTable/>,
     },
   ]
 

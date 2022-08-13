@@ -1,3 +1,3 @@
 import CustomTable from "./CustomTable";
-
-export {CustomTable}
+import ButtonTable from "./ButtonTable"
+export {CustomTable, ButtonTable}
