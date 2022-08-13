@@ -46,7 +46,7 @@ function TableShipper() {
             name: 'Status',
             selector: (row) => row.status,
             sortable: true,
-            maxWidth: '100px',
+            maxWidth: '450px',
         },
         {
             name: 'Action',
