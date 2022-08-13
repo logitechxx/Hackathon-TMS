@@ -23,36 +23,42 @@ function AllocateShipment() {
             >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Allocate Shipment</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody pb={6}>
-                        <FormControl mt={4}>
-                            <FormLabel>Truck</FormLabel>
-                            <SelectDropdown
-                                multi
-                                name="truck"
-                                searchable
-                                options={truckType}
-                            />
-                        </FormControl>
-                        <FormControl mt={4}>
-                            <FormLabel>Driver</FormLabel>
-                            <SelectDropdown
-                                multi
-                                name="driver"
-                                searchable
-                                options={listDriver}
-                            />
-                        </FormControl>
+                    <form>
+                        <ModalHeader>Allocate Shipment</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody pb={6}>
+                            <FormControl mt={4}>
+                                <FormLabel>Truck</FormLabel>
+                                <SelectDropdown
+                                    multi
+                                    name="truck"
+                                    searchable
+                                    options={truckType}
+                                    value={selectTruck}
+                                    onChange={handleChangeTruck}
+                                />
+                            </FormControl>
+                            <FormControl mt={4}>
+                                <FormLabel>Driver</FormLabel>
+                                <SelectDropdown
+                                    multi
+                                    name="driver"
+                                    searchable
+                                    options={listDriver}
+                                    value={selectDriver}
+                                    onChange={handleChangeDriver}
+                                />
+                            </FormControl>
 
-                    </ModalBody>
+                        </ModalBody>
 
-                    <ModalFooter>
-                        <Button colorScheme='linkedin' mr={3}>
-                            Save
-                        </Button>
-                        <Button onClick={onClose}>Cancel</Button>
-                    </ModalFooter>
+                        <ModalFooter>
+                            <Button colorScheme='linkedin' mr={3}>
+                                Save
+                            </Button>
+                            <Button onClick={onClose}>Cancel</Button>
+                        </ModalFooter>
+                    </form>
                 </ModalContent>
             </Modal>
         </>
