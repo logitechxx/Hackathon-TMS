@@ -1,0 +1,41 @@
+.login {
+    background-color: #282c34;
+}
+
+.login-header {
+    align-items: center;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-header-wrapper {
+    text-align: center;
+}
+
+.login-title{
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.login-description{
+    padding: 20px;
+    font-size: 18px;
+}
+
+.login-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer {
+    color: white;
+    padding: 16px 0;
+    text-align: center;
+}
+
+.a {
+    color: inherit;
+}
