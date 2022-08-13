@@ -20,8 +20,10 @@ func NewShipmentHandler(shipmentService services.ShipmentService) *shipmentHandl
 
 func (h *shipmentHandler) GetAll(c *gin.Context) {
 	search := c.Query("search")
+	sortBy := c.Query("sort_by")
+	sortType := c.Query("sort_type")
 
-	shipments, err := h.shipmentService.FindAll(search)
+	shipments, err := h.shipmentService.FindAll(search, sortBy, sortType)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
