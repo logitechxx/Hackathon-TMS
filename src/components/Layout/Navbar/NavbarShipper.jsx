@@ -1,6 +1,7 @@
-import { Button, Flex, Heading, Text } from '@chakra-ui/react'
+import { Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Profile from './Profile'
 
 function NavbarShipper() {
     return (
@@ -9,8 +10,8 @@ function NavbarShipper() {
             justify="space-between"
             align="center"
         >
-            <Heading as="h3" size="lg" color="facebook.700">LMS</Heading>
-            <Button colorScheme="facebook" variant="solid">Shipper</Button>
+            <Heading as="h3" size="lg" color="linkedin.100">LMS</Heading>
+            <Profile/>
         </Flex>
     )
 }

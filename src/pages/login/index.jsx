@@ -15,7 +15,6 @@ function Login() {
         navigate('/shipper')   
     }
 
-
     return (
         <Box className="login">
             <Box className="login-header">

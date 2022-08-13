@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { transportersMenu } from './menu'
 import NavbarSelections from './NavbarSelections'
+import Profile from './Profile'
 
 function Navbar() {
   return (
@@ -13,8 +14,8 @@ function Navbar() {
       align="center"
       >
         <Heading as="h3" size="lg" color="facebook.100">LMS</Heading>
-          <NavbarSelections />
-        <Button colorScheme="facebook" variant="solid">Transporter</Button>
+        <NavbarSelections />
+        <Profile/>
     </Flex>
   )
 }
