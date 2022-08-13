@@ -125,9 +125,6 @@ export {
   postWithoutHeader,
   post,
   get,
-  getWithoutHeader,
-  getWithSlug,
   put,
   putWithSlug,
-  deleteWithSlug
 };

@@ -10,20 +10,10 @@ function CreateTruck() {
         const finalRef = React.useRef(null)
 
 
-        const {values, stnk, kir, handleChangeKir, handleChangeStnk, onSubmit, mutateAddCategory, handleChange} = useForm()
+        const {values, stnk, kir, handleChangeKir, handleChangeStnk, onSubmit, mutateAddCategory, handleChange,  selectedTruck, handleChangeTruck, selectedPlate, handleChangePlate, truckType,
+          licenseType} = useForm()
 
-const truckType = [
-    { value: 'tronton', label: 'Tronton' },
-    { value: 'container', label: 'Container' },
-    { value: 'cde', label: 'CDE' },
-    { value: 'cdd', label: 'CDD' },
-    { value: 'wingbox', label: 'WingBox' },
-  ]
 
-  const licenseType = [
-    { value: 'Black', label: 'Black' },
-    { value: 'yellow', label: 'Yellow' },
-  ]
 
         return (
           <>
@@ -41,15 +31,17 @@ const truckType = [
                 <ModalBody pb={6}>
                   <FormControl>
                     <FormLabel>License Number</FormLabel>
-                    <Input name="license" placeholder='License' />
+                    <Input name="license" value={values.license}  onChange={handleChange} placeholder='License' />
                   </FormControl>
       
                   <FormControl mt={4}>
                     <FormLabel>License Type</FormLabel>
                     <SelectDropdown
                     multi
-                    name="licenseType"
+                    name="plate"
                     searchable
+                    onChange={handleChangePlate}
+                    value={selectedPlate}
                     options={licenseType}
               />
                   </FormControl>
@@ -60,24 +52,26 @@ const truckType = [
                     multi
                     name="truckType"
                     searchable
+                    onChange={handleChangeTruck}
+                    value={selectedTruck}
                     options={truckType}
               />
                   </FormControl>
 
                   <FormControl mt={4}>
                     <FormLabel> Production Year</FormLabel>
-                    <Input placeholder='Production Year' name="year" />
+                    <Input placeholder='Production Year' onChange={handleChange} name="year" />
                   </FormControl>
 
 
                   <FormControl mt={4}>
                     <FormLabel> STNK</FormLabel>
-                    <Input type="file" name="stnk" value="stnk" />
+                    <Input type="file" name="stnk" value="stnk" onChange={handleChangeStnk} />
                   </FormControl>
 
                   <FormControl mt={4}>
                     <FormLabel> KIR</FormLabel>
-                    <Input type="file" name="kir" value="kir" />
+                    <Input type="file" name="kir" value="kir"  onChange={handleChangeKir}/>
                   </FormControl>
 
                 </ModalBody>
