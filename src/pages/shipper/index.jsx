@@ -7,7 +7,8 @@ function Shipper() {
         <Box
             p="15"
             m="10"
-            backgroundColor='linkedin.200'>
+            backgroundColor='linkedin.100'
+            height='80vh'>
             <Flex>
                 <CreateShipper />
             </Flex>

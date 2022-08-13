@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react'
 import { CustomTable, ButtonTable } from '../../molecules';
+import ActionButton from './ActionButton';
 import './styles.css'
 
 function TableShipper() {
@@ -9,13 +10,13 @@ function TableShipper() {
             name: 'Shipment',
             selector: (row) => row.ship,
             sortable: true,
-            maxWidth: '450px'
+            maxWidth: '350px'
         },
         {
             name: 'License',
             selector: (row) => row.no,
             sortable: true,
-            maxWidth: '450px'
+            maxWidth: '350px'
         },
         {
             name: 'Drivers Name',
@@ -28,7 +29,7 @@ function TableShipper() {
             name: 'Origin',
             selector: (row) => row.origin,
             sortable: true,
-            maxWidth: '100px',
+            maxWidth: '150px',
         },
         {
             name: 'Destination',
@@ -37,7 +38,7 @@ function TableShipper() {
             maxWidth: '150px',
         },
         {
-            name: 'Loading Data',
+            name: 'Loading Date',
             selector: (row) => row.loading,
             sortable: true,
             maxWidth: '150px',
@@ -46,13 +47,13 @@ function TableShipper() {
             name: 'Status',
             selector: (row) => row.status,
             sortable: true,
-            maxWidth: '450px',
+            maxWidth: '400px',
         },
         {
             name: 'Action',
             selector: (row) => row.action,
             sortable: true,
-            maxWidth: '100px',
+            maxWidth: '300px',
             button: true,
         },
     ];
@@ -66,7 +67,7 @@ function TableShipper() {
             destination: 'Surabaya',
             loading: '21 August',
             status: 'Completed',
-            action: '',
+            action: <ActionButton/>,
         },
     ]
 

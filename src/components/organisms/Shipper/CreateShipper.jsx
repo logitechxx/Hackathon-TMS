@@ -29,7 +29,7 @@ function CreateShipper() {
 
     return (
         <>
-            <Button onClick={onOpen}>Create</Button>
+            <Button onClick={onOpen}>Add Shipment</Button>
             <Modal
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}
