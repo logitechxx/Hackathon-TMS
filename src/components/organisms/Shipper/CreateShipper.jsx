@@ -8,10 +8,23 @@ function CreateShipper() {
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
 
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
+    const districts = [
+        { value: 'cengkareng', label: 'Cengkareng' },
+        { value: 'grogol-petamburan', label: 'Grogol Petamburan' },
+        { value: 'kalideres', label: 'Kalideres' },
+        { value: 'kebon-jeruk', label: 'Kebon Jeruk' },
+        { value: 'kembangan', label: 'Kembangan' },
+        { value: 'palmerah', label: 'Palmerah' },
+        { value: 'taman-sari', label: 'Taman Sari' },
+        { value: 'tambora', label: 'Tambora' },
+        { value: 'cempaka-putih', label: 'Cempaka Putih' },
+        { value: 'gambir', label: 'Gambir' },
+        { value: 'johar-baru', label: 'Johar Baru' },
+        { value: 'kemayoran', label: 'Kemayoran' },
+        { value: 'menteng', label: 'Menteng' },
+        { value: 'sawah-besar', label: 'Sawah Besar' },
+        { value: 'senen', label: 'Senen' },
+        { value: 'tanah-abang', label: 'Tanah Abang' }
     ]
 
     return (
@@ -34,7 +47,7 @@ function CreateShipper() {
                                 multi
                                 name="origin"
                                 searchable
-                                options={options}
+                                options={districts}
                             />
                         </FormControl>
 
@@ -44,7 +57,7 @@ function CreateShipper() {
                                 multi
                                 name="destination"
                                 searchable
-                                options={options}
+                                options={districts}
                             />
                         </FormControl>
 

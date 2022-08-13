@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 import { TableTruck } from '../../components'
-import CreateTruck from '../../components/organisms/Truck/CreateTruck'
+import CreateTruck from '../../components/organisms/Truck/Create'
 
 function TruckPage() {
   return (

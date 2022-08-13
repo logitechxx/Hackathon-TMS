@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { CustomTable, ButtonTable } from '../../molecules';
 import ActionButton from './ActionButton';
+import DetailTruck from './DetailTruck';
 import './style.css'
 
 function TableTruck() {
@@ -49,7 +50,7 @@ function TableTruck() {
 
   const data = [
     {
-      no: <Link to="/transporter/details">B 2021 ABC</Link>,
+      no: <DetailTruck label="B 2021 ABC"/>,
       truck: 'Tronton',
       plate: 'Yellow',
       year: '2001',
