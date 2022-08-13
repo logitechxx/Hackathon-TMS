@@ -9,7 +9,7 @@ function Navbar() {
       justify="space-between"
       align="center"
       >
-        <Heading as="h3" size="lg" color="facebook.700">LMS</Heading>
+        <Heading as="h3" size="lg" color="facebook.100">LMS</Heading>
         <Flex 
           w="40%"
           justify="space-between"
@@ -17,7 +17,7 @@ function Navbar() {
           >
           {
             transportersMenu.map(item=>(
-              <Text key={item.name} fontSize="18" fontWeight="semibold" color="facebook.300">
+              <Text key={item.name} fontSize="18" fontWeight="semibold" color="facebook.50">
                 <Link to={item.path}>{item.name}</Link>
               </Text>
             ))

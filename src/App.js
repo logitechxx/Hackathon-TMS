@@ -15,7 +15,7 @@ function App() {
             return <Route key={path} path={path} element={element} />;
           })}
 
-        <Route element={<Layout />} path="/transporters">
+        <Route element={<Layout />} path="/transporter">
           {transporters.map((route) => {
             const { element, path } = route;
             return(
