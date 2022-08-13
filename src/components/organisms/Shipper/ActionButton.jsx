@@ -1,7 +1,7 @@
 import { MenuItem } from '@chakra-ui/react'
 import React from 'react'
 import { ButtonTable } from '../../molecules'
-import AllocateShipment from './AllocateShipment'
+import AllocateShipment from './Create/AllocateShipment'
 import ShipmentStatus from './ShipmentStatus'
 
 function ActionButton() {

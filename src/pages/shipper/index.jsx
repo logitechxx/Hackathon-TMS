@@ -1,6 +1,7 @@
 import {Box, Button, Link, Text, Flex} from '@chakra-ui/react';
 import React from 'react';
-import { TableShipper, CreateShipper } from '../../components'
+import { TableShipper } from '../../components'
+import CreateShipper from '../../components/organisms/Shipper/Create/CreateShipper'
 
 function Shipper() {
     return (
