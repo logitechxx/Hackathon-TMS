@@ -44,15 +44,6 @@ func main() {
 	shipmentService := services.NewShipmentService(shipmentRepository)
 	shipmentHandler := handler.NewShipmentHandler(shipmentService)
 
-<<<<<<< Updated upstream
-=======
-	driverRepository := repositories.NewDriverRepository(DB)
-	driverService := services.NewDriverService(driverRepository)
-	driverHandler := handler.NewDriverHandler(driverService)
-
-	router := gin.Default()
-
->>>>>>> Stashed changes
 	shipmentRouter := router.Group("shipments")
 
 	shipmentRouter.GET("/", shipmentHandler.GetAll)
@@ -61,7 +52,11 @@ func main() {
 	shipmentRouter.POST("/Allocate/:id", shipmentHandler.Allocate)
 	shipmentRouter.POST("/UpdateStatus/:id", shipmentHandler.UpdateStatus)
 
-	driverRouter := router.Group("driver")
+	driverRepository := repositories.NewDriverRepository(DB)
+	driverService := services.NewDriverService(driverRepository)
+	driverHandler := handler.NewDriverHandler(driverService)
+
+	driverRouter := router.Group("drivers")
 	driverRouter.GET("/", driverHandler.GetAll)
 	driverRouter.POST("/", driverHandler.Create)
 	driverRouter.GET("/:id", driverHandler.GetById)
