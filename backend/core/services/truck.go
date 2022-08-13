@@ -8,6 +8,7 @@ import (
 
 type TruckService interface {
 	FindAll() ([]domains.Truck, error)
+	FindAllAvailable() ([]domains.Truck, error)
 	Create(truckRequest dto.TruckDtoRequest) (domains.Truck, error)
 	FindById(ID int) (*domains.Truck, error)
 	Update(ID int, truckRequest dto.TruckDtoRequest) (*domains.Truck, error)
@@ -37,6 +38,12 @@ func (s *truckService) Create(truckRequest dto.TruckDtoRequest) (domains.Truck, 
 
 func (s *truckService) FindAll() ([]domains.Truck, error) {
 	trucks, err := s.truckRepo.FindAll()
+
+	return trucks, err
+}
+
+func (s *truckService) FindAllAvailable() ([]domains.Truck, error) {
+	trucks, err := s.truckRepo.FindAllAvailable()
 
 	return trucks, err
 }
