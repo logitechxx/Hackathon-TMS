@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
 import { TableTruck } from '../../components'
+import CreateTruck from '../../components/organisms/Truck/CreateTruck'
 
 function TruckPage() {
   return (
@@ -10,6 +11,7 @@ function TruckPage() {
     backgroundColor='facebook.200'>
       <h1>hhshdsahdj</h1>
         <TableTruck />
+        <CreateTruck />
     </Box>
   )
 }
