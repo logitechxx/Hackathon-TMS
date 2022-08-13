@@ -8,7 +8,7 @@ import (
 )
 
 type ShipmentRepository interface {
-	FindAll() ([]domains.Shipment, error)
+	FindAll(search string) ([]domains.Shipment, error)
 	FindById(ID int) (*domains.Shipment, error)
 	Create(Shipment domains.Shipment) (domains.Shipment, error)
 	Update(Shipment domains.Shipment) (domains.Shipment, error)
@@ -23,10 +23,10 @@ func NewShipmentRepository(db *gorm.DB) *shipmentRepository {
 	return &shipmentRepository{db}
 }
 
-func (r *shipmentRepository) FindAll() ([]domains.Shipment, error) {
+func (r *shipmentRepository) FindAll(search string) ([]domains.Shipment, error) {
 	var shipments []domains.Shipment
 
-	err := r.db.Preload("Truck").Preload("Driver").Find(&shipments).Error
+	err := r.db.Preload("Truck").Preload("Driver").Where("shipment_number LIKE ?", "%" + search + "%").Find(&shipments).Error
 
 	return shipments, err
 }
