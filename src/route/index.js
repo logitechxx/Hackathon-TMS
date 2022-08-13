@@ -12,7 +12,7 @@ export const routes = [
 
 export const transporters=[
   {
-    path:'/',
+    path:'/transporter',
     element : <Transporters />
   }
 ]

@@ -9,16 +9,22 @@ function App() {
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
+
           {routes.map((route) => {
             const { element, path } = route;
             return <Route key={path} path={path} element={element} />;
           })}
-          <Route element={<Layout />} path="/">
+
+        <Route element={<Layout />} path="/transporters">
           {transporters.map((route) => {
             const { element, path } = route;
-            return <Route key={path} path={path} element={element} />;
+            return(
+                <Route key={path} path={path} element={element} />
+            );
           })}
           </Route>
+
+
         </Routes>
       </Suspense>
     </BrowserRouter>
