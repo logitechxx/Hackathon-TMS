@@ -62,9 +62,6 @@ const post =
       data,
       {
         method: 'POST',
-        headers: {
-          Authorization: `Token ${isToken}`
-        },
         params
       },
       timemout
@@ -92,9 +89,6 @@ const putWithSlug =
       data,
       {
         method: 'POST',
-        headers: {
-          Authorization: `Token ${isToken}`
-        }
       },
       timemout
     );
@@ -108,9 +102,6 @@ const put =
       data,
       {
         method: 'POST',
-        headers: {
-          Authorization: `Token ${isToken}`
-        }
       },
       timemout
     );
@@ -123,9 +114,6 @@ const get =
       api,
       {
         method: 'GET',
-        headers: {
-          Authorization: `Token ${isToken}`
-        },
         params
       },
       { handleNetworkError, handleCommonError },
