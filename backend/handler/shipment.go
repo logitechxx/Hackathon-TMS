@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"kargo/TMS/core/domains"
 	"kargo/TMS/core/services"
 	"kargo/TMS/handler/dto"
 	"net/http"
@@ -25,27 +26,24 @@ func (h *shipmentHandler) GetAll(c *gin.Context) {
 	}
 
 	// Convert to response
+	var shipmentResponses []dto.ShipmentResponse
 
-	c.JSON(http.StatusOK, gin.H{
-		"data": shipments,
-	})
-}
-
-func (h *shipmentHandler) GetById(c *gin.Context) {
-	idString := c.Param("id")
-	id, _ := strconv.Atoi(idString)
-
-	shipment, err := h.shipmentService.FindById(id)
-
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
+	for _, shipment := range shipments {
+		shipmentResponse := dto.ShipmentResponse{
+			Id: shipment.Id,
+			ShipmentNumber: "DO-" + strconv.Itoa(shipment.Id),
+			LicenseNumber: shipment.Truck.LicenseNumber,
+			DriverName: shipment.Driver.Name,
+			Origin: shipment.Origin,
+			Destination: shipment.Destination,
+			LoadingDate: shipment.LoadingDate,
+			Status: domains.GetStatus(shipment.Status),
+		}
+		shipmentResponses = append(shipmentResponses, shipmentResponse)
 	}
 
-	// Convert to response
-
 	c.JSON(http.StatusOK, gin.H{
-		"data": shipment,
+		"data": shipmentResponses,
 	})
 }
 
@@ -71,10 +69,17 @@ func (h *shipmentHandler) Create(c *gin.Context) {
 	})
 }
 
-func (h *shipmentHandler) Update(c *gin.Context) {
-	var shipmentInput dto.ShipmentInput
+func (h *shipmentHandler) GetStatusDropdown(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"data": domains.ShipmentStatuses[2:],
+	})
+	// Nanti balikinnya index
+}
 
-	err := c.ShouldBindJSON(&shipmentInput)
+func (h *shipmentHandler) Allocate(c *gin.Context) {
+	var shipmentAllocateInput dto.ShipmentAllocateInput
+
+	err := c.ShouldBindJSON(&shipmentAllocateInput)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -83,7 +88,7 @@ func (h *shipmentHandler) Update(c *gin.Context) {
 	idString := c.Param("id")
 	id, _ := strconv.Atoi(idString)
 
-	shipment, err := h.shipmentService.Update(id, shipmentInput)
+	shipment, err := h.shipmentService.Allocate(id, shipmentAllocateInput)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -95,20 +100,86 @@ func (h *shipmentHandler) Update(c *gin.Context) {
 	})
 }
 
-func (h *shipmentHandler) Delete(c *gin.Context) {
+func (h *shipmentHandler) UpdateStatus(c *gin.Context) {
+	var shipmentUpdateStatusInput dto.ShipmentUpdateStatusInput
+
+	err := c.ShouldBindJSON(&shipmentUpdateStatusInput)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	idString := c.Param("id")
 	id, _ := strconv.Atoi(idString)
 
-	shipment, err := h.shipmentService.Delete(id)
+	shipment, err := h.shipmentService.UpdateStatus(id, shipmentUpdateStatusInput.StatusId)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	// Convert to response
-
 	c.JSON(http.StatusOK, gin.H{
 		"data": shipment,
 	})
 }
+
+// func (h *shipmentHandler) GetById(c *gin.Context) {
+// 	idString := c.Param("id")
+// 	id, _ := strconv.Atoi(idString)
+
+// 	shipment, err := h.shipmentService.FindById(id)
+
+// 	if err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
+
+// 	// Convert to response
+
+// 	c.JSON(http.StatusOK, gin.H{
+// 		"data": shipment,
+// 	})
+// }
+
+// func (h *shipmentHandler) Update(c *gin.Context) {
+// 	var shipmentInput dto.ShipmentInput
+
+// 	err := c.ShouldBindJSON(&shipmentInput)
+// 	if err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
+
+// 	idString := c.Param("id")
+// 	id, _ := strconv.Atoi(idString)
+
+// 	shipment, err := h.shipmentService.Update(id, shipmentInput)
+
+// 	if err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
+
+// 	c.JSON(http.StatusOK, gin.H{
+// 		"data": shipment,
+// 	})
+// }
+
+// func (h *shipmentHandler) Delete(c *gin.Context) {
+// 	idString := c.Param("id")
+// 	id, _ := strconv.Atoi(idString)
+
+// 	shipment, err := h.shipmentService.Delete(id)
+
+// 	if err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
+
+// 	// Convert to response
+
+// 	c.JSON(http.StatusOK, gin.H{
+// 		"data": shipment,
+// 	})
+// }

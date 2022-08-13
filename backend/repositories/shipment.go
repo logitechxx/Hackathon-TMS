@@ -26,7 +26,7 @@ func NewShipmentRepository(db *gorm.DB) *shipmentRepository {
 func (r *shipmentRepository) FindAll() ([]domains.Shipment, error) {
 	var shipments []domains.Shipment
 
-	err := r.db.Find(&shipments).Error
+	err := r.db.Preload("Truck").Preload("Driver").Find(&shipments).Error
 
 	return shipments, err
 }

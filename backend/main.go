@@ -39,6 +39,7 @@ func main() {
 	trucksRouter.GET("/:id", truckHandler.GetById)
 	trucksRouter.PUT("/:id", truckHandler.Update)
 
+	// Shipment
 	shipmentRepository := repositories.NewShipmentRepository(DB)
 	shipmentService := services.NewShipmentService(shipmentRepository)
 	shipmentHandler := handler.NewShipmentHandler(shipmentService)
@@ -46,10 +47,10 @@ func main() {
 	shipmentRouter := router.Group("shipments")
 
 	shipmentRouter.GET("/", shipmentHandler.GetAll)
-	shipmentRouter.GET("/:id", shipmentHandler.GetById)
+	shipmentRouter.GET("/GetStatusDropdown", shipmentHandler.GetStatusDropdown)
 	shipmentRouter.POST("/", shipmentHandler.Create)
-	shipmentRouter.PUT("/:id", shipmentHandler.Update)
-	shipmentRouter.DELETE("/:id", shipmentHandler.Delete)
+	shipmentRouter.POST("/Allocate/:id", shipmentHandler.Allocate)
+	shipmentRouter.POST("/UpdateStatus/:id", shipmentHandler.UpdateStatus)
 
 	router.Run()
 }
