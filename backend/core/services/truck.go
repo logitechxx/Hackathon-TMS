@@ -24,10 +24,10 @@ func NewTruckService(repository repositories.TruckRepository) *truckService {
 
 func (s *truckService) Create(truckRequest dto.TruckInput) (domains.Truck, error) {
 	truck := domains.Truck{
-		LicenseNumber: truckRequest.LicenseNumber,
-		// PlateType:      truckRequest.PlateType,
-		// TruckType:      truckRequest.TruckType,
-		// ProductionYear: truckRequest.ProductionYear,
+		LicenseNumber:  truckRequest.LicenseNumber,
+		PlateType:      truckRequest.PlateType,
+		TruckType:      truckRequest.TruckType,
+		ProductionYear: truckRequest.ProductionYear,
 	}
 
 	newTruck, err := s.truckRepo.Create(truck)

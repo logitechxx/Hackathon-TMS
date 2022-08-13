@@ -26,15 +26,27 @@ func main() {
 	dbURL := goDotEnvVariable("POSTGRES_URL")
 	DB := repositories.Init(dbURL)
 
+	router := gin.Default()
+
 	truckRepository := repositories.NewTruckRepository(DB)
 	truckService := services.NewTruckService(truckRepository)
 	truckHandler := handler.NewTruckHandler(truckService)
 
-	router := gin.Default()
-
 	trucksRouter := router.Group("trucks")
 
 	trucksRouter.POST("/", truckHandler.Create)
+
+	shipmentRepository := repositories.NewShipmentRepository(DB)
+	shipmentService := services.NewShipmentService(shipmentRepository)
+	shipmentHandler := handler.NewShipmentHandler(shipmentService)
+
+	shipmentRouter := router.Group("shipments")
+
+	shipmentRouter.GET("/", shipmentHandler.GetAll)
+	shipmentRouter.GET("/:id", shipmentHandler.GetById)
+	shipmentRouter.POST("/", shipmentHandler.Create)
+	shipmentRouter.PUT("/:id", shipmentHandler.Update)
+	shipmentRouter.DELETE("/:id", shipmentHandler.Delete)
 
 	router.Run()
 }
