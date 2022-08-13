@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, MenuButton, MenuList, MenuGroup, Button, MenuItem } from '@chakra-ui/react'
 
-function ButtonTable() {
+function ButtonTable({children}) {
 
-    const role = localStorage.getItem("role")
-    const [options, setOptions] = useState([])
+    // const role = localStorage.getItem("role")
+    // const [options, setOptions] = useState([])
 
-    useEffect(() => {
-        settingColor(role)
-    }, [])
+    // useEffect(() => {
+    //     settingColor(role)
+    // }, [])
 
-    function settingColor(role) {
-        if (role == "Transporter"){
-            setOptions(["Change details", "Deactivate unit"])
-        } else if (role == "Shipper"){
-            setOptions(["Allocate shipment", "Update status"])
-        }
-    }
+    // function settingColor(role) {
+    //     if (role == "Transporter"){
+    //         setOptions(["Change details", "Deactivate unit"])
+    //     } else if (role == "Shipper"){
+    //         setOptions(["Allocate shipment", "Update status"])
+    //     }
+    // }
 
     return (
         <Menu>
@@ -25,11 +25,7 @@ function ButtonTable() {
             </MenuButton>
             <MenuList>
                 <MenuGroup>
-                    {options.map((opt) => {
-                        return (
-                            <MenuItem>{ opt }</MenuItem>
-                        );
-                    })}
+                    {children}
                 </MenuGroup>
             </MenuList>
         </Menu>

@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react'
 import { CustomTable, ButtonTable } from '../../molecules';
+import ActionButton from './ActionButton';
 import './style.css'
 
 function TableTruck() {
@@ -52,7 +53,7 @@ function TableTruck() {
       plate: 'Yellow',
       year: '2001',
       status: 'Active',
-      action: <ButtonTable/>,
+      action: <ActionButton/>,
     },
   ]
 
