@@ -13,12 +13,24 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
+import useForm from './useForm';
 
 function CreateDriver() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
+
+  const {
+    values,
+    idCard,
+    driverLicense,
+    handleChangeIdCard,
+    handleChangeDriverLicense,
+    onSubmit,
+    handleChange,
+    mutateAddCategory,
+  } = useForm();
 
   return (
     <>
@@ -37,22 +49,32 @@ function CreateDriver() {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Driver Name</FormLabel>
-              <Input ref={initialRef} placeholder="Driver Name" />
+              <Input ref={initialRef} placeholder="Driver Name" name="name" />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Phone Number</FormLabel>
-              <Input ref={initialRef} placeholder="+62xxxxxxxx" />
+              <Input ref={initialRef} placeholder="+62xxxxxxxx" name="phone" />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel> ID Card</FormLabel>
-              <Input type="file" placeholder="ID Card" />
+              <Input
+                type="file"
+                placeholder="ID Card"
+                name="id-file"
+                value="id-file"
+              />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel> Driver License</FormLabel>
-              <Input type="file" placeholder="Driver License" />
+              <Input
+                type="file"
+                placeholder="Driver License"
+                name="license-file"
+                value="license-file"
+              />
             </FormControl>
           </ModalBody>
 
