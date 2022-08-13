@@ -1,8 +1,5 @@
 import { useState } from 'react'
 import { useQueryClient, useMutation } from 'react-query'
-import {
-  submitAddCategory,
-} from '../../../../../services/account'
 
 const useForm = () => {
     const [values, setValues] = useState({
@@ -15,7 +12,7 @@ const useForm = () => {
       const [kir, setKir] = useState(null)
 
 
-  const queryClient = useQueryClient()
+  // const queryClient = useQueryClient()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,14 +29,14 @@ const useForm = () => {
     setStnk(e.target.files[0])
   }
 
-  const mutateAddCategory = useMutation(submitAddCategory, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('fetchTrucks')
-    },
-    onError: () => {
-      queryClient.invalidateQueries('fetchTrucks')
-    }
-  })
+  // const mutateAddCategory = useMutation((), {
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries('fetchTrucks')
+  //   },
+  //   onError: () => {
+  //     queryClient.invalidateQueries('fetchTrucks')
+  //   }
+  // })
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -48,7 +45,7 @@ const useForm = () => {
   }
 
   return {
-    values, stnk, kir, handleChangeKir, handleChangeStnk, onSubmit, mutateAddCategory, handleChange
+    values, stnk, kir, handleChangeKir, handleChangeStnk, onSubmit, handleChange
   };
 };
 
