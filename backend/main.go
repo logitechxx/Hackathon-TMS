@@ -28,6 +28,7 @@ func main() {
 
 	router := gin.Default()
 
+	// Truck
 	truckRepository := repositories.NewTruckRepository(DB)
 	truckService := services.NewTruckService(truckRepository)
 	truckHandler := handler.NewTruckHandler(truckService)
