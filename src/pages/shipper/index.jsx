@@ -4,7 +4,7 @@ import React from 'react';
 function Shipper() {
     return (
         <div>
-            Testing
+            Test
         </div>
     );
 }

@@ -15,7 +15,6 @@ function Login() {
         navigate('/shipper')   
     }
 
-
     return (
         <Box className="login" backgroundColor={"#282c34"}>
             <Box className="login-header">
