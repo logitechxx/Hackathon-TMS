@@ -34,7 +34,7 @@ func (s *shipmentService) Create(shipmentRequest dto.ShipmentInput) (domains.Shi
 		Destination: shipmentRequest.Destination,
 		LoadingDate: shipmentRequest.LoadingDate,
 	}
-
+	
 	newShipment, err := s.shipmentRepo.Create(shipment)
 
 	return newShipment, err

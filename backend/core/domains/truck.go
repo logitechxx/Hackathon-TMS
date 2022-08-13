@@ -1,10 +1,10 @@
 package domains
 
 type Truck struct {
-	ID             int `gorm:"primaryKey"`
+	Id             int `gorm:"primaryKey"`
 	LicenseNumber  string
 	TruckType      string
-	LicenseType    string
-	ProductionYear uint
-	Status         string
+	PlateType      string
+	ProductionYear string
+	Status         bool
 }

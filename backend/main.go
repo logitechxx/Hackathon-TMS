@@ -14,11 +14,11 @@ import (
 func goDotEnvVariable(key string) string {
 
 	err := godotenv.Load(".env")
-  
+
 	if err != nil {
-	  log.Fatalf("Error loading .env file")
+		log.Fatalf("Error loading .env file")
 	}
-  
+
 	return os.Getenv(key)
 }
 
@@ -26,13 +26,22 @@ func main() {
 	dbURL := goDotEnvVariable("POSTGRES_URL")
 	DB := repositories.Init(dbURL)
 
+	router := gin.Default()
+
+	truckRepository := repositories.NewTruckRepository(DB)
+	truckService := services.NewTruckService(truckRepository)
+	truckHandler := handler.NewTruckHandler(truckService)
+
+	trucksRouter := router.Group("trucks")
+
+	trucksRouter.POST("/", truckHandler.Create)
+
+	// Shipment
 	shipmentRepository := repositories.NewShipmentRepository(DB)
 	shipmentService := services.NewShipmentService(shipmentRepository)
 	shipmentHandler := handler.NewShipmentHandler(shipmentService)
 
-	router := gin.Default()
-
-	shipmentRouter := router.Group("shipment")
+	shipmentRouter := router.Group("shipments")
 
 	shipmentRouter.GET("/", shipmentHandler.GetAll)
 	shipmentRouter.GET("/GetStatusDropdown", shipmentHandler.GetStatusDropdown)
