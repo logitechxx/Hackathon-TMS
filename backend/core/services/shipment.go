@@ -9,7 +9,7 @@ import (
 )
 
 type ShipmentService interface {
-	FindAll(search string) ([]domains.Shipment, error)
+	FindAll(search string, sortBy string, sortType string) ([]domains.Shipment, error)
 	Create(shipmentRequest dto.ShipmentInput) (domains.Shipment, error)
 	Allocate(ID int, shipmentAllocateRequest dto.ShipmentAllocateInput) (*domains.Shipment, error)
 	UpdateStatus(ID int, status int) (*domains.Shipment, error)
@@ -25,8 +25,8 @@ func NewShipmentService(shipmentRepo repositories.ShipmentRepository, driverRepo
 	return &shipmentService{shipmentRepo, driverRepo, truckRepo}
 }
 
-func (s *shipmentService) FindAll(search string) ([]domains.Shipment, error) {
-	shipments, err := s.shipmentRepo.FindAll(search)
+func (s *shipmentService) FindAll(search string, sortBy string, sortType string) ([]domains.Shipment, error) {
+	shipments, err := s.shipmentRepo.FindAll(search, sortBy, sortType)
 
 	return shipments, err
 }

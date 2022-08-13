@@ -31,8 +31,9 @@ func (r *truckRepository) FindAll(search string, filter string, sortType string,
 
 	if len(filter) > 0 {
 		query = query.Where("truck_type = ?", filter)
-	} else if len(sortType) > 0 && len(sortBy) > 0 {
+	}
 
+	if len(sortType) > 0 && len(sortBy) > 0 {
 		sortQuery := fmt.Sprintf("%v ", sortBy)
 		sortQuery += sortType
 
