@@ -22,17 +22,20 @@ function CreateShipper() {
             >
                 <ModalOverlay />
                 <ModalContent>
+                       <form>
                     <ModalHeader>Add Shipment</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
-                        <FormControl mt={4}>
+                         <FormControl mt={4}>
                             <FormLabel>Origin</FormLabel>
                             <SelectDropdown
                                 multi
                                 name="origin"
                                 searchable
                                 options={districts}
-                            />
+                                value={selectOrigin}
+                                onChange={handleChangeOrigin}
+/>
                         </FormControl>
 
                         <FormControl mt={4}>
@@ -42,6 +45,8 @@ function CreateShipper() {
                                 name="destination"
                                 searchable
                                 options={districts}
+                                value={selectDestination}
+                                onChange={handleChangeDestination}
                             />
                         </FormControl>
 
@@ -52,9 +57,10 @@ function CreateShipper() {
                                 placeholder="Select Date"
                                 size="md"
                                 type="datetime-local"
+                                value={values.loading}
+                                onChange={handleChange}
                             />
                         </FormControl>
-
                     </ModalBody>
 
                     <ModalFooter>
@@ -63,6 +69,8 @@ function CreateShipper() {
                         </Button>
                         <Button onClick={onClose}>Cancel</Button>
                     </ModalFooter>
+
+                    </form>
                 </ModalContent>
             </Modal>
         </>
