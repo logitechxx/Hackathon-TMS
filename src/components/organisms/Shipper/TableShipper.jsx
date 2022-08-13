@@ -58,6 +58,14 @@ function TableShipper() {
         },
     ];
 
+
+  // const getTrucks = async () => {
+  //   // const response = await 
+  //   // return response.data.data
+  // }
+
+  // // const { data: trucks, status } = useQuery('fetchTrucks', () => getTrucks())
+
     const data = [
         {
             ship: 'DO-722947',

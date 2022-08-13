@@ -13,6 +13,32 @@ const useForm = () => {
 
 
   // const queryClient = useQueryClient()
+  const truckType = [
+    { value: 'tronton', label: 'Tronton' },
+    { value: 'container', label: 'Container' },
+    { value: 'cde', label: 'CDE' },
+    { value: 'cdd', label: 'CDD' },
+    { value: 'wingbox', label: 'WingBox' },
+  ]
+
+  const licenseType = [
+    { value: 'Black', label: 'Black' },
+    { value: 'yellow', label: 'Yellow' },
+  ]
+  const [selectedTruck, setSelectedTruck] = useState(truckType[0].value);
+
+  const handleChangeTruck = event => {
+    console.log(event);
+    setSelectedTruck(event.value);
+  };
+
+  const [selectedPlate, setSelectedPlate] = useState(licenseType[0].value);
+
+  const handleChangePlate = event => {
+    console.log(event);
+    setSelectedPlate(event.value);
+  };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,7 +71,8 @@ const useForm = () => {
   }
 
   return {
-    values, stnk, kir, handleChangeKir, handleChangeStnk, onSubmit, handleChange
+    values, stnk, kir, handleChangeKir, handleChangeStnk, onSubmit, handleChange, selectedTruck, handleChangeTruck, selectedPlate, handleChangePlate, truckType,
+    licenseType
   };
 };
 

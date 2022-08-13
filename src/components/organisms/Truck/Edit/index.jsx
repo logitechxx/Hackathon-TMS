@@ -1,30 +1,23 @@
 import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import SelectDropdown from '../../../atoms/SelectDropdown'
+import useForm from './useForm'
 
-function EditTruck() {
+function CreateTruck() {
         const { isOpen, onOpen, onClose } = useDisclosure()
       
         const initialRef = React.useRef(null)
         const finalRef = React.useRef(null)
 
 
-const truckType = [
-    { value: 'tronton', label: 'Tronton' },
-    { value: 'container', label: 'Container' },
-    { value: 'cde', label: 'CDE' },
-    { value: 'cdd', label: 'CDD' },
-    { value: 'wingbox', label: 'WingBox' },
-  ]
+        const {values, handleChangeKir, handleChangeStnk, onSubmit, mutateAddCategory, handleChange,  selectedTruck, handleChangeTruck, selectedPlate, handleChangePlate, truckType,
+          licenseType} = useForm()
 
-  const licenseType = [
-    { value: 'Black', label: 'Black' },
-    { value: 'yellow', label: 'Yellow' },
-  ]
+
 
         return (
           <>
-            <Button onClick={onOpen}>Change Details</Button>
+            <Button onClick={onOpen}>Create</Button>
             <Modal
               initialFocusRef={initialRef}
               finalFocusRef={finalRef}
@@ -36,17 +29,20 @@ const truckType = [
                 <ModalHeader>Add New Unit</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
+                  <form>
                   <FormControl>
                     <FormLabel>License Number</FormLabel>
-                    <Input ref={initialRef} placeholder='License' />
+                    <Input name="license" value={values.license}  onChange={handleChange} placeholder='License' />
                   </FormControl>
       
                   <FormControl mt={4}>
                     <FormLabel>License Type</FormLabel>
                     <SelectDropdown
                     multi
-                    name="licenseType"
+                    name="plate"
                     searchable
+                    onChange={handleChangePlate}
+                    value={selectedPlate}
                     options={licenseType}
               />
                   </FormControl>
@@ -57,26 +53,29 @@ const truckType = [
                     multi
                     name="truckType"
                     searchable
+                    onChange={handleChangeTruck}
+                    value={selectedTruck}
                     options={truckType}
               />
                   </FormControl>
 
                   <FormControl mt={4}>
                     <FormLabel> Production Year</FormLabel>
-                    <Input placeholder='Last name' />
+                    <Input placeholder='Production Year' onChange={handleChange} name="year" />
                   </FormControl>
 
 
                   <FormControl mt={4}>
                     <FormLabel> STNK</FormLabel>
-                    <Input type="file" placeholder='Last name' />
+                    <Input type="file" name="stnk"  onChange={handleChangeStnk} />
                   </FormControl>
 
                   <FormControl mt={4}>
                     <FormLabel> KIR</FormLabel>
-                    <Input type="file" placeholder='Last name' />
+                    <Input type="file" name="kir"   onChange={handleChangeKir}/>
                   </FormControl>
 
+                  </form>
                 </ModalBody>
       
                 <ModalFooter>
@@ -91,4 +90,4 @@ const truckType = [
         )
 }
 
-export default EditTruck
+export default CreateTruck
