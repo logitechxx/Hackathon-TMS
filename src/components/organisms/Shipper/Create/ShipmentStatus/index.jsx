@@ -1,7 +1,7 @@
 import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
-import SelectDropdown from '../../atoms/SelectDropdown'
-
+import SelectDropdown from '../../../../atoms/SelectDropdown'
+import useForm from './useForm'
 
 function ShipmentStatus() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -9,14 +9,7 @@ function ShipmentStatus() {
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
 
-    const shipmentStatus = [
-        { value: 'allocated', label: 'Allocated' },
-        { value: 'ongoing-origin', label: 'Ongoing to Origin' },
-        { value: 'origin', label: 'At Origin' },
-        { value: 'ongoing-destination', label: 'Ongoing to Destination' },
-        { value: 'destination', label: 'At Destination' },
-        { value: 'completed', label: 'Completed' },
-    ]
+    const { shipmentStatus, selectStatus, handleChangeStatus, onSubmit } = useForm()
 
     return (
         <>
@@ -29,27 +22,31 @@ function ShipmentStatus() {
             >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Shipment Status</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody pb={6}>
-                        <FormControl mt={4}>
-                            <FormLabel>Status</FormLabel>
-                            <SelectDropdown
-                                multi
-                                name="status"
-                                searchable
-                                options={shipmentStatus}
-                            />
-                        </FormControl>
+                    <form>
+                        <ModalHeader>Shipment Status</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody pb={6}>
+                            <FormControl mt={4}>
+                                <FormLabel>Status</FormLabel>
+                                <SelectDropdown
+                                    multi
+                                    name="status"
+                                    searchable
+                                    options={shipmentStatus}
+                                    value={selectStatus}
+                                    onChange={handleChangeStatus}
+                                />
+                            </FormControl>
 
-                    </ModalBody>
+                        </ModalBody>
 
-                    <ModalFooter>
-                        <Button colorScheme='linkedin' mr={3}>
-                            Save
-                        </Button>
-                        <Button onClick={onClose}>Cancel</Button>
-                    </ModalFooter>
+                        <ModalFooter>
+                            <Button colorScheme='linkedin' mr={3}>
+                                Save
+                            </Button>
+                            <Button onClick={onClose}>Cancel</Button>
+                        </ModalFooter>
+                    </form>
                 </ModalContent>
             </Modal>
         </>
