@@ -1,6 +1,7 @@
 import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import SelectDropdown from '../../../atoms/SelectDropdown'
+import useForm from './useForm'
 
 function CreateTruck() {
         const { isOpen, onOpen, onClose } = useDisclosure()
@@ -8,6 +9,8 @@ function CreateTruck() {
         const initialRef = React.useRef(null)
         const finalRef = React.useRef(null)
 
+
+        const {values, stnk, kir, handleChangeKir, handleChangeStnk, onSubmit, mutateAddCategory, handleChange} = useForm()
 
 const truckType = [
     { value: 'tronton', label: 'Tronton' },
@@ -38,7 +41,7 @@ const truckType = [
                 <ModalBody pb={6}>
                   <FormControl>
                     <FormLabel>License Number</FormLabel>
-                    <Input ref={initialRef} placeholder='License' />
+                    <Input name="license" placeholder='License' />
                   </FormControl>
       
                   <FormControl mt={4}>
@@ -63,18 +66,18 @@ const truckType = [
 
                   <FormControl mt={4}>
                     <FormLabel> Production Year</FormLabel>
-                    <Input placeholder='Last name' />
+                    <Input placeholder='Production Year' name="year" />
                   </FormControl>
 
 
                   <FormControl mt={4}>
                     <FormLabel> STNK</FormLabel>
-                    <Input type="file" placeholder='Last name' />
+                    <Input type="file" name="stnk" value="stnk" />
                   </FormControl>
 
                   <FormControl mt={4}>
                     <FormLabel> KIR</FormLabel>
-                    <Input type="file" placeholder='Last name' />
+                    <Input type="file" name="kir" value="kir" />
                   </FormControl>
 
                 </ModalBody>

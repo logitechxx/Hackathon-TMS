@@ -1,5 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react'
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { CustomTable, ButtonTable } from '../../molecules';
 import ActionButton from './ActionButton';
@@ -7,6 +8,15 @@ import DetailTruck from './DetailTruck';
 import './style.css'
 
 function TableTruck() {
+
+
+  // const getTrucks = async () => {
+  //   // const response = await 
+  //   // return response.data.data
+  // }
+
+  // // const { data: trucks, status } = useQuery('fetchTrucks', () => getTrucks())
+
   const columns = [
     {
       name: 'License Number',

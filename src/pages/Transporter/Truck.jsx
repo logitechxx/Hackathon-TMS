@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Heading } from '@chakra-ui/react'
 import React from 'react'
 import { TableTruck } from '../../components'
 import CreateTruck from '../../components/organisms/Truck/Create'
@@ -10,8 +10,8 @@ function TruckPage() {
     m="10"
     backgroundColor='facebook.200'
     height="80vh">
-      <h1>hhshdsahdj</h1>
-      <Flex>
+      <Flex justifyContent={"space-between"}>
+      <Heading as={"h3"}>Truck</Heading>
       <CreateTruck />
       </Flex>
         <TableTruck />
