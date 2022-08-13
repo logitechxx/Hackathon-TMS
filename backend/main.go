@@ -1,6 +1,9 @@
 package main
 
 import (
+	"kargo/TMS/core/services"
+	"kargo/TMS/handler"
+	"kargo/TMS/repositories"
 	"log"
 	"os"
 
@@ -20,9 +23,22 @@ func goDotEnvVariable(key string) string {
 }
 
 func main() {
-	//dbURL := goDotEnvVariable("POSTGRES_URL")
+	dbURL := goDotEnvVariable("POSTGRES_URL")
+	DB := repositories.Init(dbURL)
+
+	shipmentRepository := repositories.NewShipmentRepository(DB)
+	shipmentService := services.NewShipmentService(shipmentRepository)
+	shipmentHandler := handler.NewShipmentHandler(shipmentService)
 
 	router := gin.Default()
+
+	shipmentRouter := router.Group("shipments")
+
+	shipmentRouter.GET("/", shipmentHandler.GetAll)
+	shipmentRouter.GET("/:id", shipmentHandler.GetById)
+	shipmentRouter.POST("/", shipmentHandler.Create)
+	shipmentRouter.PUT("/:id", shipmentHandler.Update)
+	shipmentRouter.DELETE("/:id", shipmentHandler.Delete)
 
 	router.Run()
 }
