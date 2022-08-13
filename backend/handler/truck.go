@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"kargo/TMS/core/domains"
 	"kargo/TMS/core/services"
 	"kargo/TMS/handler/dto"
 	"net/http"
@@ -40,7 +41,14 @@ func (h *truckHandler) Create(c *gin.Context) {
 }
 
 func (h *truckHandler) GetAll(c *gin.Context) {
-	trucks, err := h.truckSrv.FindAll()
+	search := c.Query("search")
+	filter := c.Query("filter")
+	sortType := c.Query("sort_type")
+	sortBy := c.Query("sort_by")
+
+	var trucks []domains.Truck
+
+	trucks, err := h.truckSrv.FindAll(search, filter, sortType, sortBy)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

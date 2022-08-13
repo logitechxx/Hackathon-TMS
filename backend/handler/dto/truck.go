@@ -13,6 +13,13 @@ type TruckDtoRequest struct {
 	Status         bool   `json:"status"`
 }
 
+type TruckSearchParam struct {
+	Search   string `form:"search" json:"search"`
+	Filter   string `form:"filter" json:"filter"`
+	SortType string `form:"sort_type" json:"sort_type"`
+	SortBy   string `form:"sort_by" json:"sort_by"`
+}
+
 func (a TruckDtoRequest) ToJson() []byte {
 	result, _ := json.Marshal(a)
 	return result
@@ -27,14 +34,6 @@ func ToTruckDtoRequest(truck domains.Truck) TruckDtoRequest {
 		Status:         truck.Status,
 	}
 }
-
-// type TruckResponse struct {
-// 	LicenseNumber  string `json:"license_number"`
-// 	PlateType      string `json:"license_type"`
-// 	TruckType      string `json:"truck_type"`
-// 	ProductionYear string `json:"production_year"`
-// 	Status         bool   `json:"status"`
-// }
 
 func ToTrucksDto(trucks ...domains.Truck) []TruckDtoRequest {
 	if len(trucks) == 0 || trucks == nil {
