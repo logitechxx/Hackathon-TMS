@@ -4,7 +4,7 @@ import NavbarShipper from './Navbar/NavbarShipper';
 
 function ShipperLayout() {
     return (
-        <Box>
+        <Box backgroundColor={"#282c34"}>
             <NavbarShipper />
         </Box>
     );
