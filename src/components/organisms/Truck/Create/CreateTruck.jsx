@@ -1,8 +1,8 @@
 import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
-import SelectDropdown from '../../atoms/SelectDropdown'
+import SelectDropdown from '../../../atoms/SelectDropdown'
 
-function EditTruck() {
+function CreateTruck() {
         const { isOpen, onOpen, onClose } = useDisclosure()
       
         const initialRef = React.useRef(null)
@@ -24,7 +24,7 @@ const truckType = [
 
         return (
           <>
-            <Button onClick={onOpen}>Change Details</Button>
+            <Button onClick={onOpen}>Create</Button>
             <Modal
               initialFocusRef={initialRef}
               finalFocusRef={finalRef}
@@ -91,4 +91,4 @@ const truckType = [
         )
 }
 
-export default EditTruck
+export default CreateTruck
