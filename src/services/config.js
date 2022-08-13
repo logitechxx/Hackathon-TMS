@@ -1,33 +1,5 @@
 /* eslint-disable no-alert */
 import axios from 'axios';
-import { getToken } from '../utils';
-
-const isToken = getToken();
-
-axios.interceptors.request.use(
-  (config) => {
-    if (isToken) {
-      config.headers.Authorization = `Token ${isToken}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-axios.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    if (error.response?.status === 401) {
-      if (isToken) localStorage.removeItem('token');
-      window.location = '/login';
-    }
-    return Promise.reject(error);
-  }
-);
 
 export const handleNetworkError = (error) => {
   if (error.message === 'Network request failed') {
@@ -47,7 +19,7 @@ export const handleCommonError = (error) => {
       'Silakan login kembali dengan akun kamu yg telah terdaftar'
     );
     throw new Error({
-      logout: true
+      logout: true,
     });
   } else {
     throw error;
@@ -62,7 +34,7 @@ const post =
       data,
       {
         method: 'POST',
-        params
+        params,
       },
       timemout
     );
@@ -75,7 +47,7 @@ const postWithoutHeader =
       api,
       data,
       {
-        method: 'POST'
+        method: 'POST',
       },
       timemout
     );
@@ -114,17 +86,11 @@ const get =
       api,
       {
         method: 'GET',
-        params
+        params,
       },
       { handleNetworkError, handleCommonError },
       timemout
     );
   };
 
-export {
-  postWithoutHeader,
-  post,
-  get,
-  put,
-  putWithSlug,
-};
+export { postWithoutHeader, post, get, put, putWithSlug };

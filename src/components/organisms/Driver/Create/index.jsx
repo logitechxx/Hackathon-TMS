@@ -59,12 +59,7 @@ function CreateDriver() {
 
             <FormControl mt={4}>
               <FormLabel> ID Card</FormLabel>
-              <Input
-                type="file"
-                placeholder="ID Card"
-                name="id-file"
-                value="id-file"
-              />
+              <Input type="file" placeholder="ID Card" name="id-file" />
             </FormControl>
 
             <FormControl mt={4}>
@@ -73,7 +68,6 @@ function CreateDriver() {
                 type="file"
                 placeholder="Driver License"
                 name="license-file"
-                value="license-file"
               />
             </FormControl>
           </ModalBody>
