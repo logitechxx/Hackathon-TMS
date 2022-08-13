@@ -1,7 +1,7 @@
 export const transportersMenu = [
     {
         name:"Trucks",
-        path:"/transporter/trucks"
+        path:"/transporter"
     },
     {
         name:"Drivers",

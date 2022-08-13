@@ -1,5 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { CustomTable, ButtonTable } from '../../molecules';
 import ActionButton from './ActionButton';
 import './style.css'
@@ -23,19 +24,19 @@ function TableTruck() {
       name: 'Plate Type',
       selector: (row) => row.plate,
       sortable: true,
-      maxWidth: '100px',
+      maxWidth: '200px',
     },
     {
       name: 'Production Year',
       selector: (row) => row.year,
       sortable: true,
-      maxWidth: '150px',
+      maxWidth: '250px',
     },
     {
       name: 'Status',
       selector: (row) => row.status,
       sortable: true,
-      maxWidth: '150px',
+      maxWidth: '250px',
     },
     {
       name: 'Action',
@@ -48,7 +49,7 @@ function TableTruck() {
 
   const data = [
     {
-      no: 'B 2021 ABC',
+      no: <Link to="/transporter/details">B 2021 ABC</Link>,
       truck: 'Tronton',
       plate: 'Yellow',
       year: '2001',
