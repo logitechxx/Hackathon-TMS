@@ -9,13 +9,17 @@ function AllocateShipment() {
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
 
-    const shipmentStatus = [
-        { value: 'allocated', label: 'Allocated' },
-        { value: 'ongoing-origin', label: 'Ongoing to Origin' },
-        { value: 'origin', label: 'At Origin' },
-        { value: 'ongoing-destination', label: 'Ongoing to Destination' },
-        { value: 'destination', label: 'At Destination' },
-        { value: 'completed', label: 'Completed' },
+    const truckType = [
+        { value: 'tronton', label: 'Tronton' },
+        { value: 'container', label: 'Container' },
+        { value: 'cde', label: 'CDE' },
+        { value: 'cdd', label: 'CDD' },
+        { value: 'wingbox', label: 'WingBox' },
+    ]
+
+    const listDriver = [
+        { value: 'joni', label: 'Joni' },
+        { value: 'tono', label: 'Tono' },
     ]
 
     return (
@@ -33,12 +37,21 @@ function AllocateShipment() {
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         <FormControl mt={4}>
-                            <FormLabel>Status</FormLabel>
+                            <FormLabel>Truck</FormLabel>
                             <SelectDropdown
                                 multi
-                                name="status"
+                                name="truck"
                                 searchable
-                                options={shipmentStatus}
+                                options={truckType}
+                            />
+                        </FormControl>
+                        <FormControl mt={4}>
+                            <FormLabel>Driver</FormLabel>
+                            <SelectDropdown
+                                multi
+                                name="driver"
+                                searchable
+                                options={listDriver}
                             />
                         </FormControl>
 
