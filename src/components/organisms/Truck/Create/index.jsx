@@ -10,7 +10,7 @@ function CreateTruck() {
         const finalRef = React.useRef(null)
 
 
-        const {values, stnk, kir, handleChangeKir, handleChangeStnk, onSubmit, mutateAddCategory, handleChange,  selectedTruck, handleChangeTruck, selectedPlate, handleChangePlate, truckType,
+        const {values, handleChangeKir, handleChangeStnk, onSubmit, mutateAddCategory, handleChange,  selectedTruck, handleChangeTruck, selectedPlate, handleChangePlate, truckType,
           licenseType} = useForm()
 
 
@@ -29,6 +29,7 @@ function CreateTruck() {
                 <ModalHeader>Add New Unit</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
+                  <form>
                   <FormControl>
                     <FormLabel>License Number</FormLabel>
                     <Input name="license" value={values.license}  onChange={handleChange} placeholder='License' />
@@ -66,14 +67,15 @@ function CreateTruck() {
 
                   <FormControl mt={4}>
                     <FormLabel> STNK</FormLabel>
-                    <Input type="file" name="stnk" value="stnk" onChange={handleChangeStnk} />
+                    <Input type="file" name="stnk"  onChange={handleChangeStnk} />
                   </FormControl>
 
                   <FormControl mt={4}>
                     <FormLabel> KIR</FormLabel>
-                    <Input type="file" name="kir" value="kir"  onChange={handleChangeKir}/>
+                    <Input type="file" name="kir"   onChange={handleChangeKir}/>
                   </FormControl>
 
+                  </form>
                 </ModalBody>
       
                 <ModalFooter>

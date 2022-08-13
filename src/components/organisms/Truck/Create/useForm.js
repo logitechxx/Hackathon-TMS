@@ -28,15 +28,15 @@ const useForm = () => {
   const [selectedTruck, setSelectedTruck] = useState(truckType[0].value);
 
   const handleChangeTruck = event => {
-    console.log(event.target.value);
-    setSelectedTruck(event.target.value);
+    console.log(event);
+    setSelectedTruck(event.value);
   };
 
   const [selectedPlate, setSelectedPlate] = useState(licenseType[0].value);
 
   const handleChangePlate = event => {
-    console.log(event.target.value);
-    setSelectedPlate(event.target.value);
+    console.log(event);
+    setSelectedPlate(event.value);
   };
 
 
