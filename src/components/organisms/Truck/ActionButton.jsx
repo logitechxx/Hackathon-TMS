@@ -6,7 +6,7 @@ import CreateTruck from './CreateTruck'
 function ActionButton() {
   return (
     <ButtonTable>
-        <MenuItem><CreateTruck /></MenuItem>
+        <MenuItem>Change Details</MenuItem>
         <MenuItem>Deactivate Unit</MenuItem>
     </ButtonTable>
   )
