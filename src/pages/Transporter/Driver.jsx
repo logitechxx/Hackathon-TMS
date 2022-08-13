@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react';
-import CreateDriver from '../../components/organisms/Driver/CreateDriver';
+import CreateDriver from '../../components/organisms/Driver/Create';
 import TableDriver from '../../components/organisms/Driver/TableDriver';
 
 function DriverPage() {

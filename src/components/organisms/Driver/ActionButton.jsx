@@ -1,7 +1,7 @@
 import { MenuItem } from '@chakra-ui/react';
 import React from 'react';
 import { ButtonTable } from '../../molecules';
-import EditDriver from './EditDriver';
+import EditDriver from './Edit';
 
 function ActionButton() {
   return (

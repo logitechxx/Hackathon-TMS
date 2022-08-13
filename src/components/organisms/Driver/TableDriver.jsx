@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CustomTable, ButtonTable } from '../../molecules';
 import ActionButton from './ActionButton';
+import DetailDriver from './DetailDriver';
 
 function TableDriver() {
   const columns = [
@@ -42,7 +43,7 @@ function TableDriver() {
 
   const data = [
     {
-      name: <Link to="/transporter/drivers/details">Arteezy</Link>,
+      name: <DetailDriver label="Arteezy" />,
       phone_number: '+6281234567',
       created_at: 'Yellow',
       status: 'Active',
