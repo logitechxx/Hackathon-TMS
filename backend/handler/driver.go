@@ -28,6 +28,18 @@ func (h *driverHandler) GetAll(c *gin.Context) {
 	})
 }
 
+func (h *driverHandler) GetAllAvailable(c *gin.Context) {
+	drivers, err := h.driverService.FindAllAvailable()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": drivers,
+	})
+}
+
 func (h *driverHandler) Create(c *gin.Context) {
 	var driverRequest dto.DriverRequest
 

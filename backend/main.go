@@ -51,6 +51,7 @@ func main() {
 	driverRouter.GET("/:id", driverHandler.GetById)
 	driverRouter.PUT("/:id", driverHandler.Update)
 	driverRouter.GET("/:id/deactivate", driverHandler.Deactivate)
+	driverRouter.GET("/Available", driverHandler.GetAllAvailable)
 
 	// Shipment
 	shipmentRepository := repositories.NewShipmentRepository(DB)
