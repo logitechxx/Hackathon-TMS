@@ -40,19 +40,6 @@ func main() {
 	trucksRouter.GET("/:id", truckHandler.GetById)
 	trucksRouter.PUT("/:id", truckHandler.Update)
 
-	// Shipment
-	shipmentRepository := repositories.NewShipmentRepository(DB)
-	shipmentService := services.NewShipmentService(shipmentRepository)
-	shipmentHandler := handler.NewShipmentHandler(shipmentService)
-
-	shipmentRouter := router.Group("shipments")
-
-	shipmentRouter.GET("/", shipmentHandler.GetAll)
-	shipmentRouter.GET("/GetStatusDropdown", shipmentHandler.GetStatusDropdown)
-	shipmentRouter.POST("/", shipmentHandler.Create)
-	shipmentRouter.POST("/Allocate/:id", shipmentHandler.Allocate)
-	shipmentRouter.POST("/UpdateStatus/:id", shipmentHandler.UpdateStatus)
-
 	driverRepository := repositories.NewDriverRepository(DB)
 	driverService := services.NewDriverService(driverRepository)
 	driverHandler := handler.NewDriverHandler(driverService)
@@ -63,6 +50,19 @@ func main() {
 	driverRouter.GET("/:id", driverHandler.GetById)
 	driverRouter.PUT("/:id", driverHandler.Update)
 	driverRouter.GET("/:id/deactivate", driverHandler.Deactivate)
+
+	// Shipment
+	shipmentRepository := repositories.NewShipmentRepository(DB)
+	shipmentService := services.NewShipmentService(shipmentRepository, driverRepository, truckRepository)
+	shipmentHandler := handler.NewShipmentHandler(shipmentService)
+
+	shipmentRouter := router.Group("shipments")
+
+	shipmentRouter.GET("/", shipmentHandler.GetAll)
+	shipmentRouter.GET("/GetStatusDropdown", shipmentHandler.GetStatusDropdown)
+	shipmentRouter.POST("/", shipmentHandler.Create)
+	shipmentRouter.POST("/Allocate/:id", shipmentHandler.Allocate)
+	shipmentRouter.POST("/UpdateStatus/:id", shipmentHandler.UpdateStatus)
 
 	router.Run()
 }

@@ -22,8 +22,8 @@ func NewDriverService(repository repositories.DriverRepository) *driverService {
 	return &driverService{repository}
 }
 
-const StatusActive = "Active"
-const StatusInactive = "Inactive"
+const StatusActive = true
+const StatusInactive = false
 
 func (ds *driverService) FindAll() ([]domains.Driver, error) {
 	drivers, err := ds.driverRepo.FindAll()
