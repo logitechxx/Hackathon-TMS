@@ -114,7 +114,7 @@ func (h *shipmentHandler) UpdateStatus(c *gin.Context) {
 	idString := c.Param("id")
 	id, _ := strconv.Atoi(idString)
 
-	shipment, err := h.shipmentService.UpdateStatus(id, shipmentUpdateStatusInput.StatusId)
+	shipment, err := h.shipmentService.UpdateStatus(id, shipmentUpdateStatusInput.StatusId + 2)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
