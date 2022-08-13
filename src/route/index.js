@@ -2,6 +2,7 @@ import React from 'react';
 
 const Transporters = React.lazy(() => import('../pages/Transporter'));
 const TruckPage = React.lazy(() => import('../pages/Transporter/Truck'));
+const DriverPage = React.lazy(() => import('../pages/Transporter/Driver'));
 
 const Login = React.lazy(() => import('../pages/login/'));
 const Shipper = React.lazy(() => import('../pages/shipper'));
@@ -9,20 +10,24 @@ const Shipper = React.lazy(() => import('../pages/shipper'));
 export const routes = [
   {
     path: '/',
-    element: <Login />
-  }
+    element: <Login />,
+  },
 ];
 
-export const transporters=[
+export const transporters = [
   {
-    path:'/transporter',
-    element : <TruckPage />
+    path: '/transporter',
+    element: <TruckPage />,
   },
-]
-
-export const shipper=[
   {
-    path:'/shipper',
-    element : <Shipper />
-  }
-]
+    path: '/transporter/drivers',
+    element: <DriverPage />,
+  },
+];
+
+export const shipper = [
+  {
+    path: '/shipper',
+    element: <Shipper />,
+  },
+];

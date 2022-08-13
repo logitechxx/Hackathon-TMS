@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, MenuButton, MenuList, MenuGroup, Button, MenuItem } from '@chakra-ui/react'
+import { ChevronDownIcon } from '@chakra-ui/icons'
 
 function ButtonTable({children}) {
 
@@ -20,13 +21,11 @@ function ButtonTable({children}) {
 
     return (
         <Menu>
-            <MenuButton as={ Button } colorScheme="teal" >
+            <MenuButton as={ Button } colorScheme="teal" rightIcon={<ChevronDownIcon />}>
                 Update
             </MenuButton>
             <MenuList>
-                <MenuGroup>
-                    {children}
-                </MenuGroup>
+                {children}
             </MenuList>
         </Menu>
     )

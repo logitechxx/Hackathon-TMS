@@ -1,0 +1,71 @@
+import React from 'react';
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+} from '@chakra-ui/react';
+
+function EditDriver() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
+
+  return (
+    <>
+      <Button onClick={onOpen}>Change Details</Button>
+
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Edit Driver</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>Driver Name</FormLabel>
+              <Input ref={initialRef} placeholder="Driver Name" />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Phone Number</FormLabel>
+              <Input ref={initialRef} placeholder="+62xxxxxxxx" />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel> ID Card</FormLabel>
+              <Input type="file" placeholder="ID Card" />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel> Driver License</FormLabel>
+              <Input type="file" placeholder="Driver License" />
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="facebook" mr={3}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
+
+export default EditDriver;
