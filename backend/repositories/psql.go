@@ -16,9 +16,9 @@ func Init(dbURL string) *gorm.DB {
 	}
 
 	db.AutoMigrate(
-		&domains.Shipment{},
 		&domains.Driver{},
 		&domains.Truck{},
+		&domains.Shipment{},
 	)
 
 	return db

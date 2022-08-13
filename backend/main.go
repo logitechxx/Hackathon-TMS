@@ -32,13 +32,13 @@ func main() {
 
 	router := gin.Default()
 
-	shipmentRouter := router.Group("shipments")
+	shipmentRouter := router.Group("shipment")
 
 	shipmentRouter.GET("/", shipmentHandler.GetAll)
-	shipmentRouter.GET("/:id", shipmentHandler.GetById)
+	shipmentRouter.GET("/GetStatusDropdown", shipmentHandler.GetStatusDropdown)
 	shipmentRouter.POST("/", shipmentHandler.Create)
-	shipmentRouter.PUT("/:id", shipmentHandler.Update)
-	shipmentRouter.DELETE("/:id", shipmentHandler.Delete)
+	shipmentRouter.POST("/Allocate/:id", shipmentHandler.Allocate)
+	shipmentRouter.POST("/UpdateStatus/:id", shipmentHandler.UpdateStatus)
 
 	router.Run()
 }
